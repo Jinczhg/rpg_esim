@@ -1,6 +1,13 @@
 cmake_minimum_required(VERSION 3.0)
 project(imp_opengl_renderer)
 
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
+#set(glfw3_DIR "/home/jzhang72/GLFW/lib/cmake/glfw3")
+#
+#list(APPEND glfw3_INCLUDE_DIR_HINTS "/home/jzhang72/GLFW/include")
+#list(APPEND glfw3_LIBRARY_DIR_HINTS "/home/jzhang72/GLFW/lib")
+
+find_package(glm REQUIRED)
 find_package(catkin_simple REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(glfw3 REQUIRED)
@@ -12,7 +19,7 @@ set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libraries)
 
 configure_file(configuration/root_directory.h.in configuration/root_directory.h)
-include_directories(${CMAKE_BINARY_DIR}/configuration)
+include_directories(${CMAKE_BINARY_DIR}/rpg_esim/event_camera_simulator/imp/imp_opengl_renderer/configuration)
 
 # glad
 set(GLAD_DIR ${LIB_DIR}/glad)
@@ -40,7 +47,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDE_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE ${GLAD_DIR}/include)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
 
-target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${CMAKE_DL_LIBS} glfw glad assimp)
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${CMAKE_DL_LIBS} glfw3 glad assimp glm::glm)
 
 cs_install()
 cs_export()

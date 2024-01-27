@@ -166,9 +166,13 @@ void OpenGLRenderer::init()
   // create shader program
   shader.reset(new Shader(FileSystem::getPath("src/shader.vert").c_str(),
                           FileSystem::getPath("src/shader.frag").c_str()));
+//  shader.reset(new Shader(std::string("./shader.vert").c_str(),
+//                          std::string("./shader.frag").c_str()));
 
   optic_flow_shader.reset(new Shader(FileSystem::getPath("src/shader.vert").c_str(),
                                      FileSystem::getPath("src/optic_flow_shader.frag").c_str()));
+//  optic_flow_shader.reset(new Shader(std::string("./shader.vert").c_str(),
+//                                     std::string("./optic_flow_shader.frag").c_str()));
 
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_MULTISAMPLE);
