@@ -33,7 +33,64 @@ We now also support GPU support for fully parallel event generation!
 
 ## Install
 
-Installation instructions can be found in [our wiki](https://github.com/uzh-rpg/rpg_esim/wiki/Installation).
+Installation
+Tested with Ubuntu 20.04 and ROS Noetic.
+
+### Prequisite
+pcl_ros, glm, glfw, and (optional) hector-trajectory-server
+
+Create a new catkin workspace:
+
+`mkdir -p ~/sim_ws/src && cd ~/sim_ws`
+
+Install vcstools if you do not have it already:
+
+`sudo apt-get install python-vcstool`
+
+Clone this repository and run vcstools:
+
+`cd src/`
+
+`git clone https://github.com/Jinczhg/rpg_esim.git`
+
+`vcs-import < rpg_esim/dependencies.yaml`
+
+Disable the packages that are not needed:
+
+    cd ze_oss
+    touch imp_3rdparty_cuda_toolkit/CATKIN_IGNORE \
+          imp_app_pangolin_example/CATKIN_IGNORE \
+          imp_benchmark_aligned_allocator/CATKIN_IGNORE \
+          imp_bridge_pangolin/CATKIN_IGNORE \
+          imp_cu_core/CATKIN_IGNORE \
+          imp_cu_correspondence/CATKIN_IGNORE \
+          imp_cu_imgproc/CATKIN_IGNORE \
+          imp_ros_rof_denoising/CATKIN_IGNORE \
+          imp_tools_cmd/CATKIN_IGNORE \
+          ze_data_provider/CATKIN_IGNORE \
+          ze_geometry/CATKIN_IGNORE \
+          ze_imu/CATKIN_IGNORE \
+          ze_trajectory_analysis/CATKIN_IGNORE
+
+Build the assimp_catkin node:
+
+`catkin build assimp_catkin`  or `catkin_make --pkg assimp_catkin `
+      
+Build the event_camera_simulator node:
+
+`catkin build esim_ros` or `catkin_make esim_ros`
+
+Make an alias for your workspace so you can source it easily next time.
+
+`echo "source ~/sim_ws/devel/setup.bash" >> ~/setupeventsim.sh`
+
+`chmod +x ~/setupeventsim.sh`
+
+In your .bashrc file, add the following line:
+
+`alias ssim='source ~/setupeventsim.sh'`
+
+From now on, typing ssim in a terminal will initialize the simulator workspace (you need to run bash first if you want to try this right after editing the .bashrc file.
 
 ## Run
 
