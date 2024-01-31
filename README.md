@@ -78,7 +78,11 @@ Build the assimp_catkin node:
       
 Build the event_camera_simulator node:
 
-`catkin build esim_ros` or `catkin_make esim_ros`
+`catkin build esim_ros` or `catkin_make --pkg esim_ros`
+
+Build the event renderer node (for event data visualization):
+
+`catkin build dvs_renderer` or `catkin_make --pkg dvs_renderer`
 
 Make an alias for your workspace so you can source it easily next time.
 
